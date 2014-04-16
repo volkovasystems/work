@@ -2,6 +2,7 @@ try{ var base = window; }catch( error ){ var base = exports; }
 ( function module( base ){
 	define( "work",
 		[
+			"child_process",
 			"argumentsToArray",
 		],
 		function construct( ){
@@ -20,15 +21,15 @@ try{ var base = window; }catch( error ){ var base = exports; }
 				}
 
 				if( validator
-					&& typeof validator != "function"
-					|| validator.name !== "validator" )
+					&& ( typeof validator != "function"
+					|| validator.name !== "validator" ) )
 				{
 					throw new Error( "invalid validator" );
 				}
 
 				if( callback
-					&& typeof callback != "function"
-					|| callback.name !== "callback" )
+					&& ( typeof callback != "function"
+					|| callback.name !== "callback" ) )
 				{
 					throw new Error( "invalid callback" );
 				}
