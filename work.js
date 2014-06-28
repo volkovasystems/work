@@ -1,18 +1,68 @@
 /*:
+	@module-configuration:
+		{
+			"fileName": "work.js",
+			"moduleName": "work",
+			"authorName": "Richeve S. Bebedor",
+			"isGlobal": true
+		}
+	@end-module-configuration
+
+	@module-documentation:
+		This chore function is a simple command execution engine
+			with the following features:
+			1. Execute command.
+			2. Return on error.
+			3. Do not listen to output stream.
+
+		This is a global function and I hope that the word "chore",
+			will not be used anywhere in the vscode environment.
+	@end-module-documentation
+
+	@include:
+		{
+			"child_process": "childprocess"
+		}
+	@end-include
 */
 var work = function work( command, callback, validator ){
+	/*:
+		@meta-configuration:
+			{
+				"command:required": "string",
+				"callback:required": "Callback",
+				"validator:optional": "Validator"
+			}
+		@end-meta-configuration
+	*/
+
 	var task = childprocess.exec( command,
 		function onResult( error, output, errorOutput ){
-			if( error || errorOutput ){
-				error = error || new Error( errorOutput );
+			if( typeof errorOutput != undefined ||
+				errorOutput !== null )
+			{
+				errorOutput = errorOutput.toString( ).trim( );
 			}
 
-			var isValid = !!output;
-			if( validator && output.trim( ) ){
-				isValid = validator( output );
+			if( error || errorOutput ){
+				error = error || errorOutput && new Error( errorOutput );
 			}
-			
+
+			var isValid = false;
+			if( typeof output != undefined
+				|| output !== null )
+			{
+				output = output.toString( );
+
+				isValid = !!output.trim( );
+
+				if( validator && output.trim( ) ){
+					isValid = validator( output );
+				}
+			}
+
 			callback( error, isValid, output );
 		} );
 };
-exports.work = work;
+
+var childprocess = require( "child_process" );
