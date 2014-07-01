@@ -1,22 +1,18 @@
 /*:
 	@module-configuration:
 		{
+		    "packageName": "work",
 			"fileName": "work.js",
 			"moduleName": "work",
 			"authorName": "Richeve S. Bebedor",
+			"authorEMail": "richeve.bebedor@gmail.com",
+			"repository": "git@github.com:volkovasystems/work.git"
 			"isGlobal": true
 		}
 	@end-module-configuration
 
 	@module-documentation:
-		This chore function is a simple command execution engine
-			with the following features:
-			1. Execute command.
-			2. Return on error.
-			3. Do not listen to output stream.
 
-		This is a global function and I hope that the word "chore",
-			will not be used anywhere in the vscode environment.
 	@end-module-documentation
 
 	@include:
@@ -66,3 +62,4 @@ var work = function work( command, callback, validator ){
 };
 
 var childprocess = require( "child_process" );
+( module || { } ).exports = work;
