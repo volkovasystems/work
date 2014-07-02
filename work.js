@@ -1,7 +1,7 @@
 /*:
 	@module-configuration:
 		{
-		    "packageName": "work",
+			"packageName": "work",
 			"fileName": "work.js",
 			"moduleName": "work",
 			"authorName": "Richeve S. Bebedor",
