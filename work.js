@@ -41,7 +41,7 @@
 
 	@include:
 		{
-			"child_process": "childprocess"
+			"child_process@nodejs": "childprocess"
 		}
 	@end-include
 */
