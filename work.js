@@ -30,7 +30,8 @@
 			"moduleName": "work",
 			"authorName": "Richeve S. Bebedor",
 			"authorEMail": "richeve.bebedor@gmail.com",
-			"repository": "git@github.com:volkovasystems/work.git"
+			"repository": "git@github.com:volkovasystems/work.git",
+			"testCase": "work-test.js",
 			"isGlobal": true
 		}
 	@end-module-configuration
@@ -58,7 +59,7 @@ var work = function work( command, callback, validator ){
 
 	var task = childprocess.exec( command,
 		function onResult( error, output, errorOutput ){
-			if( typeof errorOutput != undefined ||
+			if( typeof errorOutput != "undefined" ||
 				errorOutput !== null )
 			{
 				errorOutput = errorOutput.toString( ).trim( );
@@ -69,7 +70,7 @@ var work = function work( command, callback, validator ){
 			}
 
 			var isValid = false;
-			if( typeof output != undefined
+			if( typeof output != "undefined"
 				|| output !== null )
 			{
 				output = output.toString( );
